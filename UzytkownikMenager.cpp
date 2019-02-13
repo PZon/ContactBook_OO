@@ -57,3 +57,7 @@ void UzytkownikManager::wypiszWszystkichUzytkownikow(){
     }
 }
 
+void UzytkownikManager::wczytajUzytkownikowZPliku(){
+    plikZUzytkownikami.wczytajUzytkownikowZPliku(uzytkownicy);
+}
+
