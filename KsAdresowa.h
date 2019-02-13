@@ -1,28 +1,14 @@
 #include <iostream>
 #include <vector>
-#include "Uzytkownik.h"
+#include "UzytkownikMenager.h"
 
 using namespace std;
 class KsiazkaAdresowa{
-    int idZalogowanegoUzytkownika;
-    int idOstatniegoAdresata;
-    int idUsunietegoAdresata;
-    string nazwaPlikuZUzytkownikami;
 
-
-    vector<Uzytkownik>uzytkownicy;
-    Uzytkownik podajDaneNowegoUzytkownika();
-    int pobierzIdNowegoUzytkownika();
-    void dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik);
-    string zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(Uzytkownik uzytkownik);
-    string konwerjsaIntNaString(int liczba);
-    bool czyPlikJestPusty(fstream &plikTekstowy);
-
-
+    UzytkownikManager uzytkownikManager;
 public:
-    KsiazkaAdresowa();
     void rejestracjaUzytkownika();
-    bool czyIstniejeLogin(string login);
     void wypiszWszystkichUzytkownikow();
+
 };
 
