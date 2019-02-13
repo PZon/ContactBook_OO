@@ -15,7 +15,7 @@ public:
     void dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik);
     bool czyPlikJestPusty();
     string zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(Uzytkownik uzytkownik);
-    void wczytajUzytkownikowZPliku(vector <Uzytkownik> &uzytkownicy);
+    vector<Uzytkownik>wczytajUzytkownikowZPliku();
     Uzytkownik pobierzDaneUzytkownika(string daneJednegoUzytkownikaOddzielonePionowymiKreskami);
 };
 
