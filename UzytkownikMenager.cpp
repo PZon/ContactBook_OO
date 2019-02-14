@@ -77,7 +77,8 @@ int UzytkownikManager::logowanieUzytkownika(){
                 if (uzytkownicy[i].pobierzHaslo() == haslo){
                     cout << endl << "Zalogowales sie." << endl << endl;
                     system("pause");
-                    return uzytkownicy[i].pobierzId();
+                    idZalogowanegoUzytkownika=uzytkownicy[i].pobierzId();
+                    return idZalogowanegoUzytkownika;
                 }
             }
             cout << "Wprowadzono 3 razy bledne haslo." << endl;
@@ -89,4 +90,10 @@ int UzytkownikManager::logowanieUzytkownika(){
     system("pause");
     return 0;
 }
-/*****************************************************/
+
+int UzytkownikManager::wylogowanieUzytkownika(){
+    cout<<"Zostales wylogowany";
+    return idZalogowanegoUzytkownika=0;
+   // adresaci.clear();
+}
+

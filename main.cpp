@@ -9,6 +9,8 @@ int main()
     ksiazkaAdresowa.wypiszWszystkichUzytkownikow();
     //ksiazkaAdresowa.rejestracjaUzytkownika();
     ksiazkaAdresowa.logowanieUzytkownika();
+    Sleep(3000);
+   ksiazkaAdresowa.wylogowanieUzytkownika();
     //ksiazkaAdresowa.wypiszWszystkichUzytkownikow();
 
     return 0;
