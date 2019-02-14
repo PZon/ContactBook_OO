@@ -11,3 +11,10 @@ void KsiazkaAdresowa::rejestracjaUzytkownika(){
 void KsiazkaAdresowa::wypiszWszystkichUzytkownikow(){
     uzytkownikManager.wypiszWszystkichUzytkownikow();
 }
+int KsiazkaAdresowa::logowanieUzytkownika(){
+    uzytkownikManager.logowanieUzytkownika();
+}
+
+int KsiazkaAdresowa::wylogowanieUzytkownika(){
+    uzytkownikManager.wylogowanieUzytkownika();
+}
