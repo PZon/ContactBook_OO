@@ -20,4 +20,5 @@ public:
     Uzytkownik podajDaneNowegoUzytkownika();
     void wypiszWszystkichUzytkownikow();
     void wczytajUzytkownikowZPliku();
+    int logowanieUzytkownika();
  };
