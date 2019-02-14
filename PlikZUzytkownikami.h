@@ -17,6 +17,7 @@ public:
     string zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(Uzytkownik uzytkownik);
     vector<Uzytkownik>wczytajUzytkownikowZPliku();
     Uzytkownik pobierzDaneUzytkownika(string daneJednegoUzytkownikaOddzielonePionowymiKreskami);
+    void zapiszWszystkichUzytkownikowDoPliku(vector<Uzytkownik>&);
 };
 
 

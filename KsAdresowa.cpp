@@ -18,3 +18,6 @@ int KsiazkaAdresowa::logowanieUzytkownika(){
 int KsiazkaAdresowa::wylogowanieUzytkownika(){
     uzytkownikManager.wylogowanieUzytkownika();
 }
+void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika(){
+    uzytkownikManager.zmianaHaslaZalogowanegoUzytkownika();
+}
