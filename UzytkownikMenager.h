@@ -1,3 +1,5 @@
+#ifndef UZYTKOWNIKMENAGER_H
+#define UZYTKOWNIKMENAGER_H
 #include <iostream>
 #include <windows.h>
 #include <fstream>
@@ -25,4 +27,5 @@ public:
     int wylogowanieUzytkownika();
     void zmianaHaslaZalogowanegoUzytkownika();
 
- };
+};
+#endif

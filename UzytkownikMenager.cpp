@@ -94,9 +94,9 @@ int UzytkownikManager::logowanieUzytkownika(){
 int UzytkownikManager::wylogowanieUzytkownika(){
     cout<<"Zostales wylogowany";
     return idZalogowanegoUzytkownika=0;
-   // adresaci.clear();
+    //adresaci.clear();
 }
-/*******************/
+
 void UzytkownikManager::zmianaHaslaZalogowanegoUzytkownika(){
     string noweHaslo = "";
     cout << "Podaj nowe haslo: ";
