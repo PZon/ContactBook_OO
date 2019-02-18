@@ -1,3 +1,5 @@
+#ifndef PLIKZUZYTKOWNIKAMI_H
+#define PLIKZUZYTKOWNIKAMI_H
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -20,4 +22,4 @@ public:
     void zapiszWszystkichUzytkownikowDoPliku(vector<Uzytkownik>&);
 };
 
-
+#endif
