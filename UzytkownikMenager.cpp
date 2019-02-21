@@ -56,11 +56,7 @@ void UzytkownikManager::wypiszWszystkichUzytkownikow(){
         <<"|"<<uzytkownicy[i].pobierzHaslo()<<"|"<<endl;
     }
 }
-
-void UzytkownikManager::wczytajUzytkownikowZPliku(){
-    uzytkownicy=plikZUzytkownikami.wczytajUzytkownikowZPliku();
-}
-
+/*
 int UzytkownikManager::logowanieUzytkownika(){
     Uzytkownik uzytkownik;
     string login = "", haslo = "";
@@ -95,6 +91,51 @@ int UzytkownikManager::wylogowanieUzytkownika(){
     cout<<"Zostales wylogowany";
     return idZalogowanegoUzytkownika=0;
     //adresaci.clear();
+}*/
+
+void UzytkownikManager::logowanieUzytkownika(){
+    Uzytkownik uzytkownik;
+    string login = "", haslo = "";
+
+    cout << endl << "Podaj login: ";
+    login=MetodyPomocnicze::wczytajLinie();
+
+    for(int i=0; i<uzytkownicy.size();i++){
+        if (uzytkownicy[i].pobierzLogin() == login){
+            for (int iloscProb = 3; iloscProb > 0; iloscProb--){
+                cout << "Podaj haslo. Pozostalo prob: " << iloscProb << ": ";
+                haslo=MetodyPomocnicze::wczytajLinie();
+
+                if (uzytkownicy[i].pobierzHaslo() == haslo){
+                    cout << endl << "Zalogowales sie." << endl << endl;
+                    idZalogowanegoUzytkownika=uzytkownicy[i].pobierzId();
+                    system("pause");
+                    return ;
+                }
+            }
+            cout << "Wprowadzono 3 razy bledne haslo." << endl;
+            system("pause");
+            return ;
+        }
+    }
+    cout << "Nie ma uzytkownika z takim loginem" << endl << endl;
+    system("pause");
+    return ;
+}
+
+
+int UzytkownikManager::pobierzIdZalogowanegoUzytkownika(){
+    return idZalogowanegoUzytkownika;
+}
+
+bool UzytkownikManager::czyUzytkownikJestZalogowany(){
+    if(idZalogowanegoUzytkownika>0) return true;
+    else return false;
+}
+
+void UzytkownikManager::wylogowanieUzytkownika(){
+    cout<<"Zostales wylogowany";
+    idZalogowanegoUzytkownika=0;
 }
 
 void UzytkownikManager::zmianaHaslaZalogowanegoUzytkownika(){
