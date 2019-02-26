@@ -34,14 +34,10 @@ void KsiazkaAdresowa::dodajAdresata(){
     adresatManager->dodajAdresata();
 }
 
-int KsiazkaAdresowa::pobierzZPlikuIdOstatniegoAdresata(){
-    adresatManager->pobierzZPlikuIdOstatniegoAdresata();
-}
-
 void KsiazkaAdresowa::wyswietlWszystkichAdresatow(){
     adresatManager->wyswietlWszystkichAdresatow();
 }
-/*************/
+
 char KsiazkaAdresowa::wybierzOpcjeZMenuGlownego()
 {
     char wybor;
@@ -81,4 +77,10 @@ char KsiazkaAdresowa::wybierzOpcjeZMenuUzytkownika()
 
     return wybor;
 }
-
+/********************************/
+void KsiazkaAdresowa::wyszukajAdresatowPoImieniu(){
+    adresatManager->wyszukajAdresatowPoImieniu();
+}
+void KsiazkaAdresowa::wyszukajAdresatowPoNazwisku(){
+    adresatManager->wyszukajAdresatowPoNazwisku();
+}

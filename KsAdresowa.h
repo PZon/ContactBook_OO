@@ -26,12 +26,13 @@ public:
     void wylogowanieUzytkownika();
     void zmianaHaslaZalogowanegoUzytkownika();
     void dodajAdresata();
-    int pobierzZPlikuIdOstatniegoAdresata();
     void wyswietlWszystkichAdresatow();
     bool czyUzytkownikJestZalogowany();
-    /****************/
     char wybierzOpcjeZMenuGlownego();
     char wybierzOpcjeZMenuUzytkownika();
+    /*********************/
+    void wyszukajAdresatowPoImieniu();
+    void wyszukajAdresatowPoNazwisku();
 
 };
 

@@ -6,7 +6,7 @@
 
 using namespace std;
 class AdresatManager{
-   // int idOstatniegoAdresata;
+
    const int ID_ZALOGOWANEGO_UZYTKOWNIKA;
     vector<Adresat>adresaci;
     PlikZAdresatami plikZAdresatami;
@@ -19,10 +19,12 @@ public:
     void dodajAdresata();
     Adresat podajDaneNowegoAdresata();
     int pobierzZPlikuIdOstatniegoAdresata();
-/*********************/
     void wyswietlWszystkichAdresatow();
     void wyswietlDaneAdresata(Adresat adresat);
-
+    /*********************/
+    void wyszukajAdresatowPoImieniu();
+    void wyszukajAdresatowPoNazwisku();
+    void wyswietlIloscWyszukanychAdresatow(int iloscAdresatow);
 };
 
 
