@@ -8,7 +8,6 @@ int main()
     char wybor;
 
     KsiazkaAdresowa ksiazkaAdresowa("Uzytkownicy.txt", "Adresaci.txt");
-   // ksiazkaAdresowa.wypiszWszystkichUzytkownikow();
     ksiazkaAdresowa.czyUzytkownikJestZalogowany();
     /***************/
     while (true)
@@ -51,10 +50,10 @@ int main()
                 ksiazkaAdresowa.dodajAdresata();
                 break;
             case '2':
-                //wyszukajAdresatowPoImieniu(adresaci);
+                ksiazkaAdresowa.wyszukajAdresatowPoImieniu();
                 break;
             case '3':
-                //wyszukajAdresatowPoNazwisku(adresaci);
+                ksiazkaAdresowa.wyszukajAdresatowPoNazwisku();
                 break;
             case '4':
                 ksiazkaAdresowa.wyswietlWszystkichAdresatow();
@@ -76,15 +75,5 @@ int main()
             }
         }
     }
-    /***************/
-
-    //ksiazkaAdresowa.rejestracjaUzytkownika();
-    //ksiazkaAdresowa.logowanieUzytkownika();
-    //ksiazkaAdresowa.wyswietlWszystkichAdresatow();
-    //ksiazkaAdresowa.dodajAdresata();
-    //ksiazkaAdresowa.zmianaHaslaZalogowanegoUzytkownika();
-    //ksiazkaAdresowa.wylogowanieUzytkownika();
-
-
     return 0;
 }
