@@ -1,8 +1,11 @@
+#ifndef ADRESATMANAGER_H
+#define ADRESATMANAGER_H
 #include <iostream>
 #include <vector>
 #include "Adresat.h"
 #include "PlikZAdresatami.h"
 #include "UzytkownikMenager.h"
+
 
 using namespace std;
 class AdresatManager{
@@ -12,8 +15,8 @@ class AdresatManager{
     PlikZAdresatami plikZAdresatami;
 
 public:
-    AdresatManager(string nazwaPlikuZAdresatami, int idZalogowanegoUzytkownika)
-    :plikZAdresatami(nazwaPlikuZAdresatami),ID_ZALOGOWANEGO_UZYTKOWNIKA(idZalogowanegoUzytkownika){
+    AdresatManager(string nazwaPlikuZAdresatami,string nazwaTymczasowegoPlikuZAdresatami,int idZalogowanegoUzytkownika)
+    :plikZAdresatami(nazwaPlikuZAdresatami,nazwaTymczasowegoPlikuZAdresatami),ID_ZALOGOWANEGO_UZYTKOWNIKA(idZalogowanegoUzytkownika){
         adresaci=plikZAdresatami.wczytajAdresatowZalogowanegoUzytkownikaZPliku(ID_ZALOGOWANEGO_UZYTKOWNIKA);
     };
     void dodajAdresata();
@@ -21,10 +24,16 @@ public:
     int pobierzZPlikuIdOstatniegoAdresata();
     void wyswietlWszystkichAdresatow();
     void wyswietlDaneAdresata(Adresat adresat);
-    /*********************/
     void wyszukajAdresatowPoImieniu();
     void wyszukajAdresatowPoNazwisku();
     void wyswietlIloscWyszukanychAdresatow(int iloscAdresatow);
+    /*********************/
+    void usunAdresata();
+    /********************/
+    void edytujAdresata();
+    char wybierzOpcjeZMenuEdycja();
+    Adresat uploadSingleContact(int contactId);
 };
+#endif
 
 

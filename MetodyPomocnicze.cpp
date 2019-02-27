@@ -59,4 +59,27 @@ char MetodyPomocnicze::wczytajZnak(){
     return znak;
 }
 
+int MetodyPomocnicze::podajIdWybranegoAdresata(){
+    int idWybranegoAdresata = 0;
+    cout << "Podaj numer ID Adresata: ";
+    idWybranegoAdresata  = wczytajLiczbeCalkowita();
+    return idWybranegoAdresata;
+}
+
+int MetodyPomocnicze::wczytajLiczbeCalkowita(){
+    string wejscie = "";
+    int liczba = 0;
+
+    while (true)
+    {
+        getline(cin, wejscie);
+
+        stringstream myStream(wejscie);
+        if (myStream >> liczba)
+            break;
+        cout << "To nie jest liczba. Wpisz ponownie. " << endl;
+    }
+    return liczba;
+}
+
 
