@@ -215,8 +215,8 @@ void PlikZAdresatami::saveEditedChanges( int idUsuwanegoAdresata){
     odczytywanyPlikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(),ios::in);
     if (odczytywanyPlikTekstowy.good() == true){
         while(getline(odczytywanyPlikTekstowy,daneAdresataOddzielonePionowymiKreskami)){
-            adresat=pobierzDaneAdresata(daneAdresataOddzielonePionowymiKreskami);
-            if(idUsuwanegoAdresata==adresat.pobierzId()){
+            adresatCopy=pobierzDaneAdresata(daneAdresataOddzielonePionowymiKreskami);
+            if(idUsuwanegoAdresata==adresatCopy.pobierzId()){
                 saveContactsToTmpFile(singleAdresat);
             }else{
                 saveContactsToTmpFile(adresatCopy);
