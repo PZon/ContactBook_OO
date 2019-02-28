@@ -195,7 +195,7 @@ void AdresatManager::usunAdresata(){
 void AdresatManager::edytujAdresata()
 {
     system("cls");
-    Adresat adresat;
+    Adresat singleAdresat;
     int idEdytowanegoAdresata = 0;
     int numerLiniiEdytowanegoAdresata = 0;
     string liniaZDanymiAdresata = "";
@@ -220,32 +220,36 @@ void AdresatManager::edytujAdresata()
                 imie=MetodyPomocnicze::wczytajLinie();
                 imie=MetodyPomocnicze::zamienPierwszaLitereNaDuzaAPozostaleNaMale(imie);
                 adresaci[i].ustawImie(imie);
-                plikZAdresatami.saveEditedChanges(idEdytowanegoAdresata);
+                plikZAdresatami.saveEditedChanges(idEdytowanegoAdresata,adresaci);
                 break;
             case '2':
                 cout << "Podaj nowe nazwisko: ";
                 nazwisko=MetodyPomocnicze::wczytajLinie();
                 nazwisko=MetodyPomocnicze::zamienPierwszaLitereNaDuzaAPozostaleNaMale(nazwisko);
                 adresaci[i].ustawNazwisko(nazwisko);
-                plikZAdresatami.saveEditedChanges(idEdytowanegoAdresata);
+              //  singleAdresat=uploadSingleContact(idEdytowanegoAdresata);
+                plikZAdresatami.saveEditedChanges(idEdytowanegoAdresata,adresaci);
                 break;
             case '3':
                 cout << "Podaj nowy numer telefonu: ";
                 numerTelefonu=MetodyPomocnicze::wczytajLinie();
                 adresaci[i].ustawNrTelefonu(numerTelefonu);
-                plikZAdresatami.saveEditedChanges(idEdytowanegoAdresata);
+              //  singleAdresat=uploadSingleContact(idEdytowanegoAdresata);
+                plikZAdresatami.saveEditedChanges(idEdytowanegoAdresata,adresaci);
                 break;
             case '4':
                 cout << "Podaj nowy email: ";
                 email=MetodyPomocnicze::wczytajLinie();
                 adresaci[i].ustawEmail(email);
-                plikZAdresatami.saveEditedChanges(idEdytowanegoAdresata);
+              //  singleAdresat=uploadSingleContact(idEdytowanegoAdresata);
+                plikZAdresatami.saveEditedChanges(idEdytowanegoAdresata,adresaci);
                 break;
             case '5':
                 cout << "Podaj nowy adres zamieszkania: ";
                  adres=MetodyPomocnicze::wczytajLinie();
                  adresaci[i].ustawAdres(adres);
-                 plikZAdresatami.saveEditedChanges(idEdytowanegoAdresata);
+               //  singleAdresat=uploadSingleContact(idEdytowanegoAdresata);
+                 plikZAdresatami.saveEditedChanges(idEdytowanegoAdresata,adresaci);
                 break;
             case '6':
                 cout << endl << "Powrot do menu uzytkownika" << endl << endl;
@@ -281,7 +285,7 @@ char AdresatManager::wybierzOpcjeZMenuEdycja()
 
     return wybor;
 }
-
+/*
 Adresat AdresatManager::uploadSingleContact(int contactId){
     Adresat adresat;
         for (int i=0; i<adresaci.size();i++){
@@ -297,7 +301,7 @@ Adresat AdresatManager::uploadSingleContact(int contactId){
         }
     return adresat;
 }
-
+*/
 
 
 

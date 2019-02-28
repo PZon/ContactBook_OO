@@ -184,8 +184,8 @@ void PlikZAdresatami::zapiszZmianyPoUsunieciu(int idUsuwanegoAdresata){
             }
         }
         odczytywanyPlikTekstowy.close();
-        remove("Adresaci.txt");
-        rename("Adresaci_tymczasowo.txt","Adresaci.txt");
+        remove(NAZWA_PLIKU_Z_ADRESATAMI.c_str());
+        rename(NAZWA_TMP_PLIKU_Z_ADRESATAMI.c_str(),NAZWA_PLIKU_Z_ADRESATAMI.c_str());
     }else{
         cout << "ERROR: Contacts not saved." << endl;
         system("pause");
@@ -206,30 +206,49 @@ void PlikZAdresatami::saveContactsToTmpFile(Adresat adresat){
     }
 }
 
-void PlikZAdresatami::saveEditedChanges( int idUsuwanegoAdresata){
+void PlikZAdresatami::saveEditedChanges(int idEdytowanegoAdresata, vector<Adresat>&adresaci){
     fstream odczytywanyPlikTekstowy;
     string daneAdresataOddzielonePionowymiKreskami;
-    Adresat singleAdresat=uploadSingleContact(idUsuwanegoAdresata);
+    Adresat singleAdresat=uploadSingleContact(idEdytowanegoAdresata,adresaci);
     Adresat adresatCopy;
 
     odczytywanyPlikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(),ios::in);
     if (odczytywanyPlikTekstowy.good() == true){
         while(getline(odczytywanyPlikTekstowy,daneAdresataOddzielonePionowymiKreskami)){
             adresatCopy=pobierzDaneAdresata(daneAdresataOddzielonePionowymiKreskami);
-            if(idUsuwanegoAdresata==adresatCopy.pobierzId()){
-                saveContactsToTmpFile(singleAdresat);
-            }else{
-                saveContactsToTmpFile(adresatCopy);
+            if(daneAdresataOddzielonePionowymiKreskami!=""){
+                if(idUsuwanegoAdresata==adresatCopy.pobierzId()){
+                    saveContactsToTmpFile(singleAdresat);
+                }else{
+                    saveContactsToTmpFile(adresatCopy);
+                }
             }
         }
         odczytywanyPlikTekstowy.close();
-        remove("ContactsBook.txt");
-        rename("tmpContacts.txt","ContactsBook.txt");
+        remove(NAZWA_PLIKU_Z_ADRESATAMI.c_str());
+        rename(NAZWA_TMP_PLIKU_Z_ADRESATAMI.c_str(),NAZWA_PLIKU_Z_ADRESATAMI.c_str());
         cout<<"\nZmiany zapisane!!!"<<endl; Sleep(2000);
     }else{
         cout << "Blad podczas zapisu." << endl;
         system("pause");
     }
+}
+
+Adresat PlikZAdresatami::uploadSingleContact(int contactId,vector<Adresat>&adresaci){
+
+    Adresat adresat;
+        for (int i=0; i<adresaci.size();i++){
+            if(contactId==adresaci[i].pobierzId()){
+                adresat.pobierzId();
+                adresat.pobierzIdUzytkownika();
+                adresat.pobierzImie();
+                adresat.pobierzNazwisko();
+                adresat.pobierzNrTelefonu();
+                adresat.pobierzEmail();
+                adresat.pobierzAdres();
+            }
+        }
+    return adresat;
 }
 
 
