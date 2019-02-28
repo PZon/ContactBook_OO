@@ -32,7 +32,7 @@ public:
     /********************/
     void edytujAdresata();
     char wybierzOpcjeZMenuEdycja();
-   // Adresat uploadSingleContact(int contactId);
+    Adresat uploadSingleContact(int contactId);
 };
 #endif
 
