@@ -33,8 +33,8 @@ public:
     /****************************/
     void zapiszZmianyPoUsunieciu(int idUsuwanegoAdresata);
     void saveContactsToTmpFile(Adresat adresat);
-    void saveEditedChanges(int contactId, vector<Adresat>&);
-    Adresat uploadSingleContact(int contactId, vector<Adresat>&);
+    void saveEditedChanges(int contactId, Adresat singleAdresat);
+    //Adresat uploadSingleContact(int contactId, vector<Adresat>&);
 
 };
 #endif

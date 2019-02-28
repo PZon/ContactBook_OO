@@ -197,8 +197,10 @@ void PlikZAdresatami::saveContactsToTmpFile(Adresat adresat){
     tymczasowyPlikTekstowy.open(NAZWA_TMP_PLIKU_Z_ADRESATAMI.c_str(),ios::out|ios::app);
     if (tymczasowyPlikTekstowy.good() == true){
 
-        tymczasowyPlikTekstowy<<endl<<adresat.pobierzId()<<"|"<<adresat.pobierzIdUzytkownika()<<"|"<<adresat.pobierzImie()<<"|"
+        /*tymczasowyPlikTekstowy<<endl<<adresat.pobierzId()<<"|"<<adresat.pobierzIdUzytkownika()<<"|"<<adresat.pobierzImie()<<"|"
         <<adresat.pobierzNazwisko()<<"|"<<adresat.pobierzNrTelefonu()<<"|"<<adresat.pobierzEmail()<<"|"<<adresat.pobierzAdres()<<"|";
+        */
+        tymczasowyPlikTekstowy<<endl<<zamienDaneAdresataNaLinieZDanymiOddzielonaPionowymiKreskami(adresat);
         tymczasowyPlikTekstowy.close();
     }else{
         cout << "ERROR: Contact not saved." << endl;
@@ -206,10 +208,11 @@ void PlikZAdresatami::saveContactsToTmpFile(Adresat adresat){
     }
 }
 
-void PlikZAdresatami::saveEditedChanges(int idEdytowanegoAdresata, vector<Adresat>&adresaci){
+//void PlikZAdresatami::saveEditedChanges(int idEdytowanegoAdresata, vector<Adresat>&adresaci){
+void PlikZAdresatami::saveEditedChanges(int idEdytowanegoAdresata, Adresat singleAdresat){
     fstream odczytywanyPlikTekstowy;
     string daneAdresataOddzielonePionowymiKreskami;
-    Adresat singleAdresat=uploadSingleContact(idEdytowanegoAdresata,adresaci);
+   // Adresat singleAdresat=uploadSingleContact(idEdytowanegoAdresata,adresaci);
     Adresat adresatCopy;
 
     odczytywanyPlikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(),ios::in);
@@ -217,7 +220,7 @@ void PlikZAdresatami::saveEditedChanges(int idEdytowanegoAdresata, vector<Adresa
         while(getline(odczytywanyPlikTekstowy,daneAdresataOddzielonePionowymiKreskami)){
             adresatCopy=pobierzDaneAdresata(daneAdresataOddzielonePionowymiKreskami);
             if(daneAdresataOddzielonePionowymiKreskami!=""){
-                if(idUsuwanegoAdresata==adresatCopy.pobierzId()){
+                if(idEdytowanegoAdresata==adresatCopy.pobierzId()){
                     saveContactsToTmpFile(singleAdresat);
                 }else{
                     saveContactsToTmpFile(adresatCopy);
@@ -233,7 +236,7 @@ void PlikZAdresatami::saveEditedChanges(int idEdytowanegoAdresata, vector<Adresa
         system("pause");
     }
 }
-
+/*
 Adresat PlikZAdresatami::uploadSingleContact(int contactId,vector<Adresat>&adresaci){
 
     Adresat adresat;
@@ -250,7 +253,7 @@ Adresat PlikZAdresatami::uploadSingleContact(int contactId,vector<Adresat>&adres
         }
     return adresat;
 }
-
+*/
 
 
 
