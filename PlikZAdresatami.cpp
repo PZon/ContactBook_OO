@@ -208,11 +208,9 @@ void PlikZAdresatami::saveContactsToTmpFile(Adresat adresat){
     }
 }
 
-//void PlikZAdresatami::saveEditedChanges(int idEdytowanegoAdresata, vector<Adresat>&adresaci){
 void PlikZAdresatami::saveEditedChanges(int idEdytowanegoAdresata, Adresat singleAdresat){
     fstream odczytywanyPlikTekstowy;
     string daneAdresataOddzielonePionowymiKreskami;
-   // Adresat singleAdresat=uploadSingleContact(idEdytowanegoAdresata,adresaci);
     Adresat adresatCopy;
 
     odczytywanyPlikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(),ios::in);
@@ -236,24 +234,7 @@ void PlikZAdresatami::saveEditedChanges(int idEdytowanegoAdresata, Adresat singl
         system("pause");
     }
 }
-/*
-Adresat PlikZAdresatami::uploadSingleContact(int contactId,vector<Adresat>&adresaci){
 
-    Adresat adresat;
-        for (int i=0; i<adresaci.size();i++){
-            if(contactId==adresaci[i].pobierzId()){
-                adresat.pobierzId();
-                adresat.pobierzIdUzytkownika();
-                adresat.pobierzImie();
-                adresat.pobierzNazwisko();
-                adresat.pobierzNrTelefonu();
-                adresat.pobierzEmail();
-                adresat.pobierzAdres();
-            }
-        }
-    return adresat;
-}
-*/
 
 
 
