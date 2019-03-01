@@ -165,7 +165,7 @@ Adresat PlikZAdresatami::pobierzDaneAdresata(string daneAdresataOddzielonePionow
     }
     return adresat;
 }
-/******************************************************************/
+
 void PlikZAdresatami::zapiszZmianyPoUsunieciu(int idUsuwanegoAdresata){
     fstream odczytywanyPlikTekstowy;
     string daneAdresataOddzielonePionowymiKreskami;
@@ -196,10 +196,6 @@ void PlikZAdresatami::saveContactsToTmpFile(Adresat adresat){
     fstream tymczasowyPlikTekstowy;
     tymczasowyPlikTekstowy.open(NAZWA_TMP_PLIKU_Z_ADRESATAMI.c_str(),ios::out|ios::app);
     if (tymczasowyPlikTekstowy.good() == true){
-
-        /*tymczasowyPlikTekstowy<<endl<<adresat.pobierzId()<<"|"<<adresat.pobierzIdUzytkownika()<<"|"<<adresat.pobierzImie()<<"|"
-        <<adresat.pobierzNazwisko()<<"|"<<adresat.pobierzNrTelefonu()<<"|"<<adresat.pobierzEmail()<<"|"<<adresat.pobierzAdres()<<"|";
-        */
         tymczasowyPlikTekstowy<<endl<<zamienDaneAdresataNaLinieZDanymiOddzielonaPionowymiKreskami(adresat);
         tymczasowyPlikTekstowy.close();
     }else{
@@ -208,7 +204,7 @@ void PlikZAdresatami::saveContactsToTmpFile(Adresat adresat){
     }
 }
 
-void PlikZAdresatami::saveEditedChanges(int idEdytowanegoAdresata, Adresat singleAdresat){
+void PlikZAdresatami::saveEditedChanges(Adresat singleAdresat){
     fstream odczytywanyPlikTekstowy;
     string daneAdresataOddzielonePionowymiKreskami;
     Adresat adresatCopy;
@@ -218,7 +214,7 @@ void PlikZAdresatami::saveEditedChanges(int idEdytowanegoAdresata, Adresat singl
         while(getline(odczytywanyPlikTekstowy,daneAdresataOddzielonePionowymiKreskami)){
             adresatCopy=pobierzDaneAdresata(daneAdresataOddzielonePionowymiKreskami);
             if(daneAdresataOddzielonePionowymiKreskami!=""){
-                if(idEdytowanegoAdresata==adresatCopy.pobierzId()){
+                if(singleAdresat.pobierzId()==adresatCopy.pobierzId()){
                     saveContactsToTmpFile(singleAdresat);
                 }else{
                     saveContactsToTmpFile(adresatCopy);
