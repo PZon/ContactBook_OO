@@ -30,10 +30,9 @@ public:
     vector<Adresat>wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika);
     int pobierzIdUzytkownikaZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami);
     Adresat pobierzDaneAdresata(string daneAdresataOddzielonePionowymiKreskami);
-    /****************************/
     void zapiszZmianyPoUsunieciu(int idUsuwanegoAdresata);
     void saveContactsToTmpFile(Adresat adresat);
-    void saveEditedChanges(int contactId, Adresat singleAdresat);
+    void saveEditedChanges(Adresat singleAdresat);
 
 };
 #endif

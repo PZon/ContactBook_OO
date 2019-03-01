@@ -27,9 +27,7 @@ public:
     void wyszukajAdresatowPoImieniu();
     void wyszukajAdresatowPoNazwisku();
     void wyswietlIloscWyszukanychAdresatow(int iloscAdresatow);
-    /*********************/
     void usunAdresata();
-    /********************/
     void edytujAdresata();
     char wybierzOpcjeZMenuEdycja();
     Adresat uploadSingleContact(int contactId);
