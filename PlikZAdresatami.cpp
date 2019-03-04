@@ -186,6 +186,11 @@ void PlikZAdresatami::zapiszZmianyPoUsunieciu(int idUsuwanegoAdresata){
         odczytywanyPlikTekstowy.close();
         remove(NAZWA_PLIKU_Z_ADRESATAMI.c_str());
         rename(NAZWA_TMP_PLIKU_Z_ADRESATAMI.c_str(),NAZWA_PLIKU_Z_ADRESATAMI.c_str());
+
+        if(daneAdresataOddzielonePionowymiKreskami!=""){
+        idOstatniegoAdresata=pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(daneAdresataOddzielonePionowymiKreskami);
+    }
+
     }else{
         cout << "ERROR: Contacts not saved." << endl;
         system("pause");
