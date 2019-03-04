@@ -25,10 +25,7 @@ public:
     void rejestracjaUzytkownika();
     Uzytkownik podajDaneNowegoUzytkownika();
     void wypiszWszystkichUzytkownikow();
-    //int logowanieUzytkownika();
-    //int wylogowanieUzytkownika();
     void zmianaHaslaZalogowanegoUzytkownika();
-    /******/
     void logowanieUzytkownika();
     int pobierzIdZalogowanegoUzytkownika();
     bool czyUzytkownikJestZalogowany();
