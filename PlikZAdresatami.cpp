@@ -7,23 +7,27 @@
 
 using namespace std;
 
+bool PlikZAdresatami::czyPlikJestPusty(fstream &plikTekstowy){
+    plikTekstowy.seekg(0, ios::end);
+    if (plikTekstowy.tellg() == 0)return true;
+    else return false;
+}
+
 bool PlikZAdresatami::dopiszAdresataDoPliku(Adresat adresat){
-    string liniaZDanymiAdresata = "";
+    string liniaZDanymiAdresata="";
     fstream plikTekstowy;
     plikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::out | ios::app);
+
     if (plikTekstowy.good() == true){
         liniaZDanymiAdresata = zamienDaneAdresataNaLinieZDanymiOddzielonaPionowymiKreskami(adresat);
 
-    if (czyPlikJestPusty() == true)
-        {
-           plikTekstowy << liniaZDanymiAdresata;
+        if (czyPlikJestPusty(plikTekstowy) == true){
+            plikTekstowy << liniaZDanymiAdresata;
+        }else{
+            plikTekstowy << endl << liniaZDanymiAdresata ;
         }
-        else
-        {
-           plikTekstowy << endl << liniaZDanymiAdresata ;
-        }
-         plikTekstowy.close();
-        idOstatniegoAdresata++;
+            plikTekstowy.close();
+            idOstatniegoAdresata++;
 
         return true;
     }
@@ -31,7 +35,7 @@ bool PlikZAdresatami::dopiszAdresataDoPliku(Adresat adresat){
 }
 
 string PlikZAdresatami::zamienDaneAdresataNaLinieZDanymiOddzielonaPionowymiKreskami(Adresat adresat){
-    string liniaZDanymiAdresata;
+    string liniaZDanymiAdresata="";
 
     liniaZDanymiAdresata += MetodyPomocnicze::konwerjsaIntNaString(adresat.pobierzId()) + '|';
     liniaZDanymiAdresata += MetodyPomocnicze::konwerjsaIntNaString(adresat.pobierzIdUzytkownika()) + '|';
@@ -42,13 +46,6 @@ string PlikZAdresatami::zamienDaneAdresataNaLinieZDanymiOddzielonaPionowymiKresk
     liniaZDanymiAdresata += adresat.pobierzAdres() + '|';
 
     return liniaZDanymiAdresata;
-}
-
-bool PlikZAdresatami::czyPlikJestPusty(){
-    fstream plikTekstowy;
-    plikTekstowy.seekg(0, ios::end);
-    if (plikTekstowy.tellg() == 0)return true;
-    else return false;
 }
 
 int PlikZAdresatami::pobierzZPlikuIdOstatniegoAdresata(){
@@ -87,7 +84,6 @@ vector<Adresat>PlikZAdresatami::wczytajAdresatowZalogowanegoUzytkownikaZPliku(in
 {
     Adresat adresat;
     vector<Adresat>adresaci;
-   // int idOstatniegoAdresata = 0;
     string daneJednegoAdresataOddzielonePionowymiKreskami = "";
     string daneOstaniegoAdresataWPliku = "";
     fstream plikTekstowy;
@@ -166,8 +162,9 @@ Adresat PlikZAdresatami::pobierzDaneAdresata(string daneAdresataOddzielonePionow
     return adresat;
 }
 
-void PlikZAdresatami::zapiszZmianyPoUsunieciu(int idUsuwanegoAdresata){
+void PlikZAdresatami::usunAdresatazPliku(int idUsuwanegoAdresata){
     fstream odczytywanyPlikTekstowy;
+    string tmpPlik="Kontakty_tmp.txt";
     string daneAdresataOddzielonePionowymiKreskami;
     Adresat adresat;
 
@@ -179,38 +176,39 @@ void PlikZAdresatami::zapiszZmianyPoUsunieciu(int idUsuwanegoAdresata){
                 if(idUsuwanegoAdresata==adresat.pobierzId()){
                    continue;
                 }else{
-                    saveContactsToTmpFile(adresat);
+                    zapisWPlikuTymczasowym(adresat, tmpPlik);
                 }
             }
         }
         odczytywanyPlikTekstowy.close();
         remove(NAZWA_PLIKU_Z_ADRESATAMI.c_str());
-        rename(NAZWA_TMP_PLIKU_Z_ADRESATAMI.c_str(),NAZWA_PLIKU_Z_ADRESATAMI.c_str());
+        rename(tmpPlik.c_str(),NAZWA_PLIKU_Z_ADRESATAMI.c_str());
 
         if(daneAdresataOddzielonePionowymiKreskami!=""){
-        idOstatniegoAdresata=pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(daneAdresataOddzielonePionowymiKreskami);
-    }
+            idOstatniegoAdresata=pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(daneAdresataOddzielonePionowymiKreskami);
+        }
 
     }else{
-        cout << "ERROR: Contacts not saved." << endl;
+        cout << "\nBlad podczas zapisu." << endl;
         system("pause");
     }
 }
 
-void PlikZAdresatami::saveContactsToTmpFile(Adresat adresat){
+void PlikZAdresatami::zapisWPlikuTymczasowym(Adresat adresat, string tmpPlik){
     fstream tymczasowyPlikTekstowy;
-    tymczasowyPlikTekstowy.open(NAZWA_TMP_PLIKU_Z_ADRESATAMI.c_str(),ios::out|ios::app);
+    tymczasowyPlikTekstowy.open(tmpPlik.c_str(),ios::out|ios::app);
     if (tymczasowyPlikTekstowy.good() == true){
         tymczasowyPlikTekstowy<<endl<<zamienDaneAdresataNaLinieZDanymiOddzielonaPionowymiKreskami(adresat);
         tymczasowyPlikTekstowy.close();
     }else{
-        cout << "ERROR: Contact not saved." << endl;
+        cout << "\nBlad podczas zapisu." << endl;
         system("pause");
     }
 }
 
-void PlikZAdresatami::saveEditedChanges(Adresat singleAdresat){
+void PlikZAdresatami::zaktualizujDaneAdresatawPliku(Adresat adresat){
     fstream odczytywanyPlikTekstowy;
+    string tmpPlik="Kontakty_tmp.txt";
     string daneAdresataOddzielonePionowymiKreskami;
     Adresat adresatCopy;
 
@@ -219,16 +217,16 @@ void PlikZAdresatami::saveEditedChanges(Adresat singleAdresat){
         while(getline(odczytywanyPlikTekstowy,daneAdresataOddzielonePionowymiKreskami)){
             adresatCopy=pobierzDaneAdresata(daneAdresataOddzielonePionowymiKreskami);
             if(daneAdresataOddzielonePionowymiKreskami!=""){
-                if(singleAdresat.pobierzId()==adresatCopy.pobierzId()){
-                    saveContactsToTmpFile(singleAdresat);
+                if(adresat.pobierzId()==adresatCopy.pobierzId()){
+                    zapisWPlikuTymczasowym(adresat, tmpPlik);
                 }else{
-                    saveContactsToTmpFile(adresatCopy);
+                    zapisWPlikuTymczasowym(adresatCopy,tmpPlik);
                 }
             }
         }
         odczytywanyPlikTekstowy.close();
         remove(NAZWA_PLIKU_Z_ADRESATAMI.c_str());
-        rename(NAZWA_TMP_PLIKU_Z_ADRESATAMI.c_str(),NAZWA_PLIKU_Z_ADRESATAMI.c_str());
+        rename(tmpPlik.c_str(),NAZWA_PLIKU_Z_ADRESATAMI.c_str());
         cout<<"\nZmiany zapisane!!!"<<endl; Sleep(2000);
     }else{
         cout << "Blad podczas zapisu." << endl;

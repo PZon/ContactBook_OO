@@ -13,7 +13,7 @@ void PlikZUzytkownikami::dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik){
     {
         liniaZDanymiUzytkownika = zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(uzytkownik);
 
-        if (czyPlikJestPusty() == true)
+        if (czyPlikJestPusty(plikTekstowy) == true)
         {
             plikTekstowy << liniaZDanymiUzytkownika;
         }
@@ -27,8 +27,7 @@ void PlikZUzytkownikami::dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik){
         cout << "Nie udalo sie otworzyc pliku " << NAZWA_PLIKU_Z_UZYTKOWNIKAMI << " i zapisac w nim danych." << endl;
 }
 
-bool PlikZUzytkownikami::czyPlikJestPusty(){
-    fstream plikTekstowy;
+bool PlikZUzytkownikami::czyPlikJestPusty(fstream &plikTekstowy){
     plikTekstowy.seekg(0, ios::end);
     if (plikTekstowy.tellg() == 0) return true;
     else return false;

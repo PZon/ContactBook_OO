@@ -15,8 +15,8 @@ class AdresatManager{
     PlikZAdresatami plikZAdresatami;
 
 public:
-    AdresatManager(string nazwaPlikuZAdresatami,string nazwaTymczasowegoPlikuZAdresatami,int idZalogowanegoUzytkownika)
-    :plikZAdresatami(nazwaPlikuZAdresatami,nazwaTymczasowegoPlikuZAdresatami),ID_ZALOGOWANEGO_UZYTKOWNIKA(idZalogowanegoUzytkownika){
+    AdresatManager(string nazwaPlikuZAdresatami,int idZalogowanegoUzytkownika)
+    :plikZAdresatami(nazwaPlikuZAdresatami),ID_ZALOGOWANEGO_UZYTKOWNIKA(idZalogowanegoUzytkownika){
         adresaci=plikZAdresatami.wczytajAdresatowZalogowanegoUzytkownikaZPliku(ID_ZALOGOWANEGO_UZYTKOWNIKA);
     };
     void dodajAdresata();
@@ -30,7 +30,6 @@ public:
     void usunAdresata();
     void edytujAdresata();
     char wybierzOpcjeZMenuEdycja();
-    Adresat uploadSingleContact(int contactId);
 };
 #endif
 
